@@ -1,0 +1,21 @@
+MIRA BACKEND — Einrichtung auf Vercel
+=====================================
+1. vercel.com → Add New → Project → diesen Ordner "mira-backend" hochladen
+   (oder im Ordner: npx vercel --prod). Projektname: mira-backend
+2. Settings → Environment Variables (Production), danach Redeploy:
+
+   SUPABASE_URL                  = https://jndoltcebqdslphfzvvk.supabase.co
+   SUPABASE_ANON_KEY             = Supabase → Projekt mira → Settings → API Keys → anon public
+   SUPABASE_RPC_SECRET           = notification_secret der Mira-Datenbank (von Claude)
+   NOTIFY_STATUS_ENDPOINT_SECRET = langes Zufallswort (dasselbe später in mira-admin)
+   TELEGRAM_BOT_TOKEN            = Token des Mira-Bots (@BotFather)
+   TELEGRAM_CHAT_ID              = ID der Mira-Gruppe
+
+   Erst wenn die Mira-Domain in Resend verifiziert ist:
+   RESEND_API_KEY      = re_...
+   EMAIL_FROM_ADDRESS  = z. B. reservierung@<mira-domain>
+   RESERVATION_EMAIL   = Postfach des Restaurants
+   RESTAURANT_WEBSITE  = https://<mira-domain>
+
+Ohne RESEND_API_KEY laufen Bestellungen und Reservierungen trotzdem
+(Supabase + Telegram + Admin) — nur die E-Mails fallen weg.
