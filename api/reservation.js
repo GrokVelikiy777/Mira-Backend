@@ -335,8 +335,10 @@ export default async function handler(req, res) {
 
   const results = {};
 
-  /* 1. Telegram an das Restaurant (Hauptkanal) */
-  try {
+  /* 1. Telegram an das Restaurant — standardmäßig AUS (Wunsch des Inhabers, 13.10.2026).
+        Reservierungen sieht man im Admin + per E-Mail. Wieder einschalten:
+        Env-Variable RESERVATION_TELEGRAM=1 setzen. */
+  if (process.env.RESERVATION_TELEGRAM === '1') try {
     const tg = await sendReservationTelegram(d);
     if (tg) results.telegram = true;
   } catch (err) {
